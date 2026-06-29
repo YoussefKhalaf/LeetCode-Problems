@@ -11,29 +11,14 @@ class Solution {
       "M": 1000
     };
     for (int i = 0; i < s.length; i++) {
-      if (i == s.length - 1) {
-        sum += roman_numerals[s[i]]!;
-        break;
-      }
-      String str = s[i] + s[i + 1];
-      if (str == "IV") {
-        sum += 4;
-        i++;
-      } else if (str == "IX") {
-        sum += 9;
-        i++;
-      } else if (str == "XL") {
-        sum += 40;
-        i++;
-      } else if (str == "XC") {
-        sum += 90;
-        i++;
-      } else if (str == "CD") {
-        sum += 400;
-        i++;
-      } else if (str == "CM") {
-        sum += 900;
-        i++;
+      int current = roman_numerals[s[i]]!;
+      if (i < s.length - 1) {
+        int next = roman_numerals[s[i + 1]]!;
+        if (current < next) {
+          sum -= current;
+        } else {
+          sum += current;
+        }
       } else {
         sum += roman_numerals[s[i]]!;
       }
